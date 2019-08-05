@@ -38,7 +38,7 @@ interface ERC1155 /* is ERC165 */ {
     /**
         @dev MUST emit when the URI is updated for a token ID.
         URIs are defined in RFC 3986.
-        The URI MUST point a JSON file that conforms to the "ERC-1155 Metadata URI JSON Schema".
+        The URI MUST point to a JSON file that conforms to the "ERC-1155 Metadata URI JSON Schema".
     */
     event URI(string _value, uint256 indexed _id);
 
@@ -77,7 +77,7 @@ interface ERC1155 /* is ERC165 */ {
     function safeBatchTransferFrom(address _from, address _to, uint256[] calldata _ids, uint256[] calldata _values, bytes calldata _data) external;
 
     /**
-        @notice Get the balance of an account's Tokens.
+        @notice Get the balance of an account's tokens.
         @param _owner  The address of the token holder
         @param _id     ID of the token
         @return        The _owner's balance of the token type requested
@@ -87,7 +87,7 @@ interface ERC1155 /* is ERC165 */ {
     /**
         @notice Get the balance of multiple account/token pairs
         @param _owners The addresses of the token holders
-        @param _ids    ID of the Tokens
+        @param _ids    ID of the tokens
         @return        The _owner's balance of the token types requested (i.e. balance for each (owner, id) pair)
      */
     function balanceOfBatch(address[] calldata _owners, uint256[] calldata _ids) external view returns (uint256[] memory);
@@ -102,7 +102,7 @@ interface ERC1155 /* is ERC165 */ {
 
     /**
         @notice Queries the approval status of an operator for a given owner.
-        @param _owner     The owner of the Tokens
+        @param _owner     The owner of the tokens
         @param _operator  Address of authorized operator
         @return           True if the operator is approved, false if not
     */
