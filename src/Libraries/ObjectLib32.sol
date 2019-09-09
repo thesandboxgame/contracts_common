@@ -54,6 +54,7 @@ library ObjectLib32 {
             );
         } else if (_operation == Operations.SUB) {
             objectBalance = getValueInBin(_binBalances, _index);
+            require(objectBalance >= _amount, "can't substract more than there is");
             newBinBalance = writeValueInBin(
                 _binBalances,
                 _index,
