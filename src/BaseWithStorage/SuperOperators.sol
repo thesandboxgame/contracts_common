@@ -8,7 +8,7 @@ contract SuperOperators is Admin {
 
     event SuperOperator(address superOperator, bool enabled);
 
-    /// @notice set `superOperator` as superOperator: `enabled`.
+    /// @notice Enable or disable the ability of `superOperator` to transfer tokens of all (superOperator rights).
     /// @param superOperator address that will be given/removed superOperator right.
     /// @param enabled set whether the superOperator is enabled or disabled.
     function setSuperOperator(address superOperator, bool enabled) external {
