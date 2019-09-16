@@ -1,7 +1,9 @@
 pragma solidity ^0.5.2;
 
 contract Admin {
+
     address internal _admin;
+
     event AdminChanged(address oldAdmin, address newAdmin);
 
     /// @notice gives the current administrator of this contract.

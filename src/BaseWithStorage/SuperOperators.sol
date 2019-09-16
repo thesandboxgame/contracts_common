@@ -3,11 +3,13 @@ pragma solidity ^0.5.2;
 import "./Admin.sol";
 
 contract SuperOperators is Admin {
+
     mapping(address => bool) internal _superOperators;
+
     event SuperOperator(address superOperator, bool enabled);
 
     /// @notice set `superOperator` as superOperator: `enabled`.
-    /// @param superOperator address that is given/removed superOperator right.
+    /// @param superOperator address that will be given/removed superOperator right.
     /// @param enabled set whether the superOperator is enabled or disabled.
     function setSuperOperator(address superOperator, bool enabled) external {
         require(
