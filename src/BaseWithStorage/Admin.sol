@@ -1,11 +1,20 @@
 pragma solidity ^0.5.2;
 
 contract Admin {
-    address public admin;
+    address internal _admin;
     event AdminChanged(address oldAdmin, address newAdmin);
-    function changeAdmin(address _admin) external {
-        require(msg.sender == admin, "only admin can change admin");
-        emit AdminChanged(admin, _admin);
-        admin = _admin;
+
+    /// @notice gives the current administrator of this contract.
+    /// @return the current administrator of this contract.
+    function getAdmin() external view returns (address) {
+        return _admin;
+    }
+
+    /// @notice change the administrator to be `newAdmin`.
+    /// @param newAdmin address of the new administrator.
+    function changeAdmin(address newAdmin) external {
+        require(msg.sender == _admin, "only admin can change admin");
+        emit AdminChanged(_admin, newAdmin);
+        _admin = newAdmin;
     }
 }
