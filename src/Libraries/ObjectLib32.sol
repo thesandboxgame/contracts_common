@@ -15,53 +15,53 @@ library ObjectLib32 {
 
     /**
   * @dev Return the bin number and index within that bin where ID is
-  * @param _tokenId Object type
+  * @param tokenId Object type
   * @return (Bin number, ID's index within that bin)
   */
-    function getTokenBinIndex(uint256 _tokenId)
+    function getTokenBinIndex(uint256 tokenId)
         internal
         pure
         returns (uint256 bin, uint256 index)
     {
-        bin = (_tokenId * TYPES_BITS_SIZE) / 256;
-        index = _tokenId % TYPES_PER_UINT256;
+        bin = (tokenId * TYPES_BITS_SIZE) / 256;
+        index = tokenId % TYPES_PER_UINT256;
         return (bin, index);
     }
 
     /**
-  * @dev update the balance of a type provided in _binBalances
-  * @param _binBalances Uint256 containing the balances of objects
-  * @param _index Index of the object in the provided bin
-  * @param _amount Value to update the type balance
-  * @param _operation Which operation to conduct :
-  *     Operations.REPLACE : Replace type balance with _amount
-  *     Operations.ADD     : ADD _amount to type balance
-  *     Operations.SUB     : Substract _amount from type balance
+  * @dev update the balance of a type provided in binBalances
+  * @param binBalances Uint256 containing the balances of objects
+  * @param index Index of the object in the provided bin
+  * @param amount Value to update the type balance
+  * @param operation Which operation to conduct :
+  *     Operations.REPLACE : Replace type balance with amount
+  *     Operations.ADD     : ADD amount to type balance
+  *     Operations.SUB     : Substract amount from type balance
   */
     function updateTokenBalance(
-        uint256 _binBalances,
-        uint256 _index,
-        uint256 _amount,
-        Operations _operation
+        uint256 binBalances,
+        uint256 index,
+        uint256 amount,
+        Operations operation
     ) internal pure returns (uint256 newBinBalance) {
         uint256 objectBalance = 0;
-        if (_operation == Operations.ADD) {
-            objectBalance = getValueInBin(_binBalances, _index);
+        if (operation == Operations.ADD) {
+            objectBalance = getValueInBin(binBalances, index);
             newBinBalance = writeValueInBin(
-                _binBalances,
-                _index,
-                objectBalance.add(_amount)
+                binBalances,
+                index,
+                objectBalance.add(amount)
             );
-        } else if (_operation == Operations.SUB) {
-            objectBalance = getValueInBin(_binBalances, _index);
-            require(objectBalance >= _amount, "can't substract more than there is");
+        } else if (operation == Operations.SUB) {
+            objectBalance = getValueInBin(binBalances, index);
+            require(objectBalance >= amount, "can't substract more than there is");
             newBinBalance = writeValueInBin(
-                _binBalances,
-                _index,
-                objectBalance.sub(_amount)
+                binBalances,
+                index,
+                objectBalance.sub(amount)
             );
-        } else if (_operation == Operations.REPLACE) {
-            newBinBalance = writeValueInBin(_binBalances, _index, _amount);
+        } else if (operation == Operations.REPLACE) {
+            newBinBalance = writeValueInBin(binBalances, index, amount);
         } else {
             revert("Invalid operation"); // Bad operation
         }
@@ -69,12 +69,12 @@ library ObjectLib32 {
         return newBinBalance;
     }
     /*
-  * @dev return value in _binValue at position _index
-  * @param _binValue uint256 containing the balances of TYPES_PER_UINT256 types
-  * @param _index index at which to retrieve value
-  * @return Value at given _index in _bin
+  * @dev return value in binValue at position index
+  * @param binValue uint256 containing the balances of TYPES_PER_UINT256 types
+  * @param index index at which to retrieve value
+  * @return Value at given index in bin
   */
-    function getValueInBin(uint256 _binValue, uint256 _index)
+    function getValueInBin(uint256 binValue, uint256 index)
         internal
         pure
         returns (uint256)
@@ -83,24 +83,24 @@ library ObjectLib32 {
         uint256 mask = (uint256(1) << TYPES_BITS_SIZE) - 1;
 
         // Shift amount
-        uint256 rightShift = 256 - TYPES_BITS_SIZE * (_index + 1);
-        return (_binValue >> rightShift) & mask;
+        uint256 rightShift = 256 - TYPES_BITS_SIZE * (index + 1);
+        return (binValue >> rightShift) & mask;
     }
 
     /**
-  * @dev return the updated _binValue after writing _amount at _index
-  * @param _binValue uint256 containing the balances of TYPES_PER_UINT256 types
-  * @param _index Index at which to retrieve value
-  * @param _amount Value to store at _index in _bin
-  * @return Value at given _index in _bin
+  * @dev return the updated binValue after writing amount at index
+  * @param binValue uint256 containing the balances of TYPES_PER_UINT256 types
+  * @param index Index at which to retrieve value
+  * @param amount Value to store at index in bin
+  * @return Value at given index in bin
   */
-    function writeValueInBin(uint256 _binValue, uint256 _index, uint256 _amount)
+    function writeValueInBin(uint256 binValue, uint256 index, uint256 amount)
         internal
         pure
         returns (uint256)
     {
         require(
-            _amount < 2**TYPES_BITS_SIZE,
+            amount < 2**TYPES_BITS_SIZE,
             "Amount to write in bin is too large"
         );
 
@@ -108,8 +108,8 @@ library ObjectLib32 {
         uint256 mask = (uint256(1) << TYPES_BITS_SIZE) - 1;
 
         // Shift amount
-        uint256 leftShift = 256 - TYPES_BITS_SIZE * (_index + 1);
-        return (_binValue & ~(mask << leftShift)) | (_amount << leftShift);
+        uint256 leftShift = 256 - TYPES_BITS_SIZE * (index + 1);
+        return (binValue & ~(mask << leftShift)) | (amount << leftShift);
     }
 
 }

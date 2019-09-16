@@ -9,31 +9,31 @@ import "./ERC721Events.sol";
  */
 /*interface*/
 contract ERC721 is ERC165, ERC721Events {
-    function balanceOf(address _owner) external view returns (uint256 _balance);
-    function ownerOf(uint256 _tokenId) external view returns (address _owner);
-    //   function exists(uint256 _tokenId) external view returns (bool _exists);
+    function balanceOf(address owner) external view returns (uint256 balance);
+    function ownerOf(uint256 tokenId) external view returns (address owner);
+    //   function exists(uint256 tokenId) external view returns (bool exists);
 
-    function approve(address _to, uint256 _tokenId) external;
-    function getApproved(uint256 _tokenId)
+    function approve(address to, uint256 tokenId) external;
+    function getApproved(uint256 tokenId)
         external
         view
-        returns (address _operator);
+        returns (address operator);
 
-    function setApprovalForAll(address _operator, bool _approved) external;
-    function isApprovedForAll(address _owner, address _operator)
+    function setApprovalForAll(address operator, bool approved) external;
+    function isApprovedForAll(address owner, address operator)
         external
         view
         returns (bool);
 
-    function transferFrom(address _from, address _to, uint256 _tokenId)
+    function transferFrom(address from, address to, uint256 tokenId)
         external;
-    function safeTransferFrom(address _from, address _to, uint256 _tokenId)
+    function safeTransferFrom(address from, address to, uint256 tokenId)
         external;
 
     function safeTransferFrom(
-        address _from,
-        address _to,
-        uint256 _tokenId,
-        bytes calldata _data
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes calldata data
     ) external;
 }
