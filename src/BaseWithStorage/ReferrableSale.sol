@@ -23,15 +23,15 @@ contract ReferrableSale is Ownable {
     mapping (address => uint256) public customReferrals;
 
     function setDefaultReferral(uint256 _defaultReferral) public onlyOwner {
-        require(_defaultReferral < 10000, "Referral must be less than 100%");
-        require(_defaultReferral != defaultReferral, "Referral must not be identical");
+        require(_defaultReferral < 10000, "Referral must be less than 100 percent");
+        require(_defaultReferral != defaultReferral, "New referral must be different from the previous");
         defaultReferral = _defaultReferral;
         emit DefaultReferralSet(_defaultReferral);
     }
 
     function setCustomReferral(address _referrer, uint256 _customReferral) public onlyOwner {
-        require(_customReferral < 10000, "Referral must be less than 100%");
-        require(_customReferral != customReferrals[_referrer], "Referral must not be identical");
+        require(_customReferral < 10000, "Referral must be less than 100 percent");
+        require(_customReferral != customReferrals[_referrer], "New referral must be different from the previous");
         customReferrals[_referrer] = _customReferral;
         emit CustomReferralSet(_referrer, _customReferral);
     }
