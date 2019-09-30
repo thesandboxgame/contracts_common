@@ -19,20 +19,24 @@ contract ReferrableSale is Ownable {
         uint256 percentage
     );
 
-    uint256 public defaultReferral = 0;
-    mapping (address => uint256) public customReferrals;
+    uint256 public defaultReferralPercentage;
+    mapping (address => uint256) public customReferralPercentages;
 
-    function setDefaultReferral(uint256 _defaultReferral) public onlyOwner {
-        require(_defaultReferral < 10000, "Referral must be less than 100 percent");
-        require(_defaultReferral != defaultReferral, "New referral must be different from the previous");
-        defaultReferral = _defaultReferral;
-        emit DefaultReferralSet(_defaultReferral);
+    // constructor() public{
+    //     emit DefaultReferralSet(defaultReferralPercentage);
+    // }
+
+    function setDefaultReferral(uint256 _defaultReferralPercentage) public onlyOwner {
+        require(_defaultReferralPercentage < 10000, "Referral must be less than 100 percent");
+        require(_defaultReferralPercentage != defaultReferralPercentage, "New referral must be different from the previous");
+        defaultReferralPercentage = _defaultReferralPercentage;
+        emit DefaultReferralSet(_defaultReferralPercentage);
     }
 
-    function setCustomReferral(address _referrer, uint256 _customReferral) public onlyOwner {
-        require(_customReferral < 10000, "Referral must be less than 100 percent");
-        require(_customReferral != customReferrals[_referrer], "New referral must be different from the previous");
-        customReferrals[_referrer] = _customReferral;
-        emit CustomReferralSet(_referrer, _customReferral);
+    function setCustomReferral(address _referrer, uint256 _customReferralPercentage) public onlyOwner {
+        require(_customReferralPercentage < 10000, "Referral must be less than 100 percent");
+        require(_customReferralPercentage != customReferralPercentages[_referrer], "New referral must be different from the previous");
+        customReferralPercentages[_referrer] = _customReferralPercentage;
+        emit CustomReferralSet(_referrer, _customReferralPercentage);
     }
 }
