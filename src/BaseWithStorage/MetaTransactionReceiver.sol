@@ -15,6 +15,10 @@ contract MetaTransactionReceiver is Admin{
             msg.sender == _admin,
             "only admin can setup metaTransactionProcessors"
         );
+        _setMetaTransactionProcessor(metaTransactionProcessor, enabled);
+    }
+
+    function _setMetaTransactionProcessor(address metaTransactionProcessor, bool enabled) internal {
         _metaTransactionContracts[metaTransactionProcessor] = enabled;
         emit MetaTransactionProcessor(metaTransactionProcessor, enabled);
     }
