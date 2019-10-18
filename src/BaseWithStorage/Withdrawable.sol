@@ -1,7 +1,7 @@
 pragma solidity ^0.5.2;
 
-import "contracts/contracts_common/src/Interfaces/ERC20.sol";
-import "contracts/contracts_common/src/BaseWithStorage/Ownable.sol";
+import "./Ownable.sol";
+import "../Interfaces/ERC20.sol";
 
 contract Withdrawable is Ownable {
     function withdrawEther(address payable _destination) external onlyOwner {

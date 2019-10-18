@@ -1,6 +1,6 @@
-pragma solidity = 0.5.12;
+pragma solidity ^0.5.2;
 
-import "contracts/contracts_common/src/BaseWithStorage/Ownable.sol";
+import "./Ownable.sol";
 
 /**
  * @title Pausable

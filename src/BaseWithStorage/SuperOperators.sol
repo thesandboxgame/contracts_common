@@ -1,6 +1,6 @@
 pragma solidity ^0.5.2;
 
-import "contracts/contracts_common/src/BaseWithStorage/Admin.sol";
+import "./Admin.sol";
 
 contract SuperOperators is Admin {
     mapping(address => bool) internal mSuperOperators;
