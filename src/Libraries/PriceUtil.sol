@@ -11,19 +11,18 @@ library PriceUtil {
             return endingPrice;
         }
         int256 totalPriceChange = int256(endingPrice) - int256(startingPrice);
-        int256 currentPriceChange = (totalPriceChange * int256(secondsPassed)) /
-            int256(duration);
+        int256 currentPriceChange = (totalPriceChange * int256(secondsPassed)) / int256(duration);
 
         return uint256(int256(startingPrice) + currentPriceChange);
     }
 
-    function calculateTax(uint256 _price, uint256 _tax)
+    function calculateTax(uint256 price, uint256 tax10000th)
         internal
         pure
         returns (uint256)
     {
         // _tax < 10000, so the result will be <= price
-        return (_price * _tax) / 10000;
+        return (price * tax10000th) / 10000;
     }
 
 }
