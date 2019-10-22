@@ -1,4 +1,4 @@
-pragma solidity ^0.5.2;
+pragma solidity = 0.5.12;
 
 library BytesUtil {
     function memcpy(uint256 dest, uint256 src, uint256 len) internal pure {
