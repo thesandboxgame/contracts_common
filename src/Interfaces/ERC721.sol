@@ -1,7 +1,7 @@
 pragma solidity ^0.5.2;
 
-import "contracts/contracts_common/src/Interfaces/ERC165.sol";
-import "contracts/contracts_common/src/Interfaces/ERC721Events.sol";
+import "./ERC165.sol";
+import "./ERC721Events.sol";
 
 /**
  * @title ERC721 Non-Fungible Token Standard basic interface
