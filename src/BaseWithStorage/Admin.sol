@@ -19,4 +19,10 @@ contract Admin {
         emit AdminChanged(_admin, newAdmin);
         _admin = newAdmin;
     }
+
+    modifier onlyAdmin() {
+        require (msg.sender == _admin, "only admin allowed");
+        _;
+    }
+
 }
