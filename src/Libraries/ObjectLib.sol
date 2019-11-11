@@ -1,9 +1,9 @@
 pragma solidity ^0.5.2;
 
-import "./SafeMath.sol";
+import "./SafeMathWithRequire.sol";
 
 library ObjectLib {
-    using SafeMath for uint256;
+    using SafeMathWithRequire for uint256;
     enum Operations {ADD, SUB, REPLACE}
     // Constants regarding bin or chunk sizes for balance packing
     uint256 constant TYPES_BITS_SIZE = 16; // Max size of each object
