@@ -16,13 +16,13 @@ library PriceUtil {
         return uint256(int256(startingPrice) + currentPriceChange);
     }
 
-    function calculateTax(uint256 price, uint256 tax10000th)
+    function calculateFee(uint256 price, uint256 fee10000th)
         internal
         pure
         returns (uint256)
     {
-        // _tax < 10000, so the result will be <= price
-        return (price * tax10000th) / 10000;
+        // _fee < 10000, so the result will be <= price
+        return (price * fee10000th) / 10000;
     }
 
 }
