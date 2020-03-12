@@ -1,4 +1,4 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
+/* This Source Code Form is subject to the terms of the Mozilla external
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
@@ -6,16 +6,15 @@
  * Do not use or deploy this code before reviewing it personally first.
  */
 // solhint-disable-next-line compiler-fixed
-pragma solidity ^0.5.2;
+pragma solidity ^0.6.0;
 
-/* interface */
-contract ERC777TokensSender {
+interface ERC777TokensSender {
     function tokensToSend(
         address operator,
         address from,
         address to,
         uint256 amount,
-        bytes memory userData,
-        bytes memory operatorData
-    ) public;
+        bytes calldata userData,
+        bytes calldata operatorData
+    ) external;
 }

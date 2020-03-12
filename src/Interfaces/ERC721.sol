@@ -1,4 +1,4 @@
-pragma solidity ^0.5.2;
+pragma solidity ^0.6.0;
 
 import "./ERC165.sol";
 import "./ERC721Events.sol";
@@ -7,8 +7,8 @@ import "./ERC721Events.sol";
  * @title ERC721 Non-Fungible Token Standard basic interface
  * @dev see https://eips.ethereum.org/EIPS/eip-721
  */
-/*interface*/
-contract ERC721 is ERC165, ERC721Events {
+ 
+interface  ERC721 is ERC165, ERC721Events {
     function balanceOf(address owner) external view returns (uint256 balance);
     function ownerOf(uint256 tokenId) external view returns (address owner);
     //   function exists(uint256 tokenId) external view returns (bool exists);

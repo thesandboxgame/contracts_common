@@ -1,5 +1,5 @@
 // from https://github.com/zeppelinos/zos/blob/1cea266a672a1efc31915420af5eb5185173837c/packages/lib/contracts/upgradeability/UpgradeabilityProxy.sol
-pragma solidity ^0.5.2;
+pragma solidity ^0.6.0;
 
 import "./ProxyBase.sol";
 import "../Libraries/AddressUtils.sol";
@@ -48,9 +48,9 @@ contract UpgradeabilityProxy is ProxyBase {
 
     /**
    * @dev Returns the current implementation.
-   * @return Address of the current implementation
+   * @return impl Address of the current implementation
    */
-    function _implementation() internal view returns (address impl) {
+    function _implementation() override internal view returns (address impl) {
         bytes32 slot = IMPLEMENTATION_SLOT;
         assembly {
             impl := sload(slot)

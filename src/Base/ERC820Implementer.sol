@@ -1,17 +1,17 @@
-pragma solidity ^0.5.2;
+pragma solidity ^0.6.0;
 
-contract ERC820Registry {
-    function getManager(address addr) public view returns (address);
-    function setManager(address addr, address newManager) public;
+interface ERC820Registry {
+    function getManager(address addr) external view returns (address);
+    function setManager(address addr, address newManager) external;
     function getInterfaceImplementer(address addr, bytes32 iHash)
-        public
+        external
         view
         returns (address);
     function setInterfaceImplementer(
         address addr,
         bytes32 iHash,
         address implementer
-    ) public;
+    ) external;
 }
 
 contract ERC820Implementer {

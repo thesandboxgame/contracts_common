@@ -1,4 +1,4 @@
-pragma solidity ^0.5.2;
+pragma solidity ^0.6.0;
 
 import "./SafeMathWithRequire.sol";
 
@@ -16,7 +16,8 @@ library ObjectLib {
     /**
   * @dev Return the bin number and index within that bin where ID is
   * @param _tokenId Object type
-  * @return (Bin number, ID's index within that bin)
+  * @return bin Bin number
+  * @return index ID's index within that bin
   */
     function getTokenBinIndex(uint256 _tokenId)
         internal

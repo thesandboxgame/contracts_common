@@ -1,7 +1,6 @@
-pragma solidity ^0.5.2;
+pragma solidity ^0.6.0;
 
-/* interface */
-contract ERC777TokenEvents {
+interface ERC777TokenEvents {
     event Sent(
         address indexed operator,
         address indexed from,

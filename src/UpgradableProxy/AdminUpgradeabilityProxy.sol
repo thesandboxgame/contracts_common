@@ -1,5 +1,5 @@
 // from https://github.com/zeppelinos/zos/blob/1cea266a672a1efc31915420af5eb5185173837c/packages/lib/contracts/upgradeability/AdminUpgradeabilityProxy.sol
-pragma solidity ^0.5.2;
+pragma solidity ^0.6.0;
 
 import "./UpgradeabilityProxy.sol";
 import "./ProxyAdmin.sol";
@@ -118,7 +118,7 @@ contract AdminUpgradeabilityProxy is UpgradeabilityProxy {
     }
 
     /**
-   * @return The admin slot.
+   * @return adm The admin slot.
    */
     function _admin() internal view returns (address adm) {
         bytes32 slot = ADMIN_SLOT;
@@ -142,7 +142,7 @@ contract AdminUpgradeabilityProxy is UpgradeabilityProxy {
     /**
    * @dev Only fall back when the sender is not the admin.
    */
-    function _willFallback() internal {
+    function _willFallback() override internal {
         require(
             msg.sender != _admin(),
             "Cannot call fallback function from the proxy admin"

@@ -1,4 +1,4 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
+/* This Source Code Form is subject to the terms of the Mozilla external
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
@@ -6,35 +6,34 @@
  * Do not use or deploy this code before reviewing it personally first.
  */
 // solhint-disable-next-line compiler-fixed
-pragma solidity ^0.5.2;
+pragma solidity ^0.6.0;
 
-/* interface */
-contract ERC777Token {
-    function name() public view returns (string memory);
-    function symbol() public view returns (string memory);
-    function totalSupply() public view returns (uint256);
-    function balanceOf(address owner) public view returns (uint256);
-    function granularity() public view returns (uint256);
+interface ERC777Token {
+    function name() external view returns (string memory);
+    function symbol() external view returns (string memory);
+    function totalSupply() external view returns (uint256);
+    function balanceOf(address owner) external view returns (uint256);
+    function granularity() external view returns (uint256);
 
-    function defaultOperators() public view returns (address[] memory);
+    function defaultOperators() external view returns (address[] memory);
     function isOperatorFor(address operator, address tokenHolder)
-        public
+        external
         view
         returns (bool);
-    function authorizeOperator(address operator) public;
-    function revokeOperator(address operator) public;
+    function authorizeOperator(address operator) external;
+    function revokeOperator(address operator) external;
 
-    function send(address to, uint256 amount, bytes memory data) public;
+    function send(address to, uint256 amount, bytes calldata data) external;
     function operatorSend(
         address from,
         address to,
         uint256 amount,
-        bytes memory data,
-        bytes memory operatorData
-    ) public;
+        bytes calldata data,
+        bytes calldata operatorData
+    ) external;
 
-    // function burn(uint256 amount, bytes data) public;
-    // function operatorBurn(address from, uint256 amount, bytes data, bytes operatorData) public;
+    // function burn(uint256 amount, bytes data) external;
+    // function operatorBurn(address from, uint256 amount, bytes data, bytes operatorData) external;
 
     event Sent(
         address indexed operator,
