@@ -19,6 +19,14 @@ abstract contract ProxyBase {
     }
 
     /**
+     * @dev receiver function.
+     * Implemented entirely in `_fallback`.
+     */
+    receive() external payable {
+        _fallback();
+    }
+
+    /**
      * @return The Address of the implementation.
      */
     function _implementation() internal virtual view returns (address);

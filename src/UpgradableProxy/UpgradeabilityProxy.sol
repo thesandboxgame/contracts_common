@@ -37,7 +37,7 @@ contract UpgradeabilityProxy is ProxyBase {
         assert(IMPLEMENTATION_SLOT == keccak256("org.zeppelinos.proxy.implementation"));
         _setImplementation(_implementation);
         if (_data.length > 0) {
-            (bool success, bytes memory _) = _implementation.delegatecall(_data);
+            (bool success, ) = _implementation.delegatecall(_data);
             require(success, "could not call the contract");
         }
     }

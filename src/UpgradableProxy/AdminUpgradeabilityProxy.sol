@@ -50,11 +50,11 @@ contract AdminUpgradeabilityProxy is UpgradeabilityProxy {
      * https://solidity.readthedocs.io/en/v0.4.24/abi-spec.html#function-selector-and-argument-encoding.
      * This parameter is optional, if no data is given the initialization call to proxied contract will be skipped.
      */
-    constructor(address payable _owner, address _implementation, bytes memory _data)
-        public
-        payable
-        UpgradeabilityProxy(_implementation, _data)
-    {
+    constructor(
+        address payable _owner,
+        address _implementation,
+        bytes memory _data
+    ) public payable UpgradeabilityProxy(_implementation, _data) {
         assert(ADMIN_SLOT == keccak256("org.zeppelinos.proxy.admin"));
 
         ProxyAdmin proxyAdmin = new ProxyAdmin(this, _owner); // TODO cheaper creation : https://eips.ethereum.org/EIPS/eip-1167
@@ -107,7 +107,7 @@ contract AdminUpgradeabilityProxy is UpgradeabilityProxy {
      */
     function upgradeToAndCall(address newImplementation, bytes calldata data) external payable ifAdmin {
         _upgradeTo(newImplementation);
-        (bool success, bytes memory _) = newImplementation.delegatecall(data);
+        (bool success, ) = newImplementation.delegatecall(data);
         require(success, "failed to call newImplementation");
     }
 
