@@ -46,7 +46,7 @@ contract UpgradeabilityProxy is ProxyBase {
      * @dev Returns the current implementation.
      * @return impl Address of the current implementation
      */
-    // override is not supported by prettier-plugin-solidity
+    // override is not supported by prettier-plugin-solidity : https://github.com/prettier-solidity/prettier-plugin-solidity/issues/221
     // prettier-ignore
     function _implementation() override internal view returns (address impl) {
         bytes32 slot = IMPLEMENTATION_SLOT;
