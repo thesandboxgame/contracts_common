@@ -8,6 +8,7 @@
 // solhint-disable-next-line compiler-fixed
 pragma solidity ^0.6.0;
 
+
 interface ERC777TokensSender {
     function tokensToSend(
         address operator,

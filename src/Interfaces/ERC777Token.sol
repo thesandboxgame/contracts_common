@@ -8,22 +8,32 @@
 // solhint-disable-next-line compiler-fixed
 pragma solidity ^0.6.0;
 
+
 interface ERC777Token {
     function name() external view returns (string memory);
+
     function symbol() external view returns (string memory);
+
     function totalSupply() external view returns (uint256);
+
     function balanceOf(address owner) external view returns (uint256);
+
     function granularity() external view returns (uint256);
 
     function defaultOperators() external view returns (address[] memory);
-    function isOperatorFor(address operator, address tokenHolder)
-        external
-        view
-        returns (bool);
+
+    function isOperatorFor(address operator, address tokenHolder) external view returns (bool);
+
     function authorizeOperator(address operator) external;
+
     function revokeOperator(address operator) external;
 
-    function send(address to, uint256 amount, bytes calldata data) external;
+    function send(
+        address to,
+        uint256 amount,
+        bytes calldata data
+    ) external;
+
     function operatorSend(
         address from,
         address to,
@@ -43,25 +53,8 @@ interface ERC777Token {
         bytes data,
         bytes operatorData
     ); // solhint-disable-next-line separate-by-one-line-in-contract
-    event Minted(
-        address indexed operator,
-        address indexed to,
-        uint256 amount,
-        bytes operatorData
-    );
-    event Burned(
-        address indexed operator,
-        address indexed from,
-        uint256 amount,
-        bytes data,
-        bytes operatorData
-    );
-    event AuthorizedOperator(
-        address indexed operator,
-        address indexed tokenHolder
-    );
-    event RevokedOperator(
-        address indexed operator,
-        address indexed tokenHolder
-    );
+    event Minted(address indexed operator, address indexed to, uint256 amount, bytes operatorData);
+    event Burned(address indexed operator, address indexed from, uint256 amount, bytes data, bytes operatorData);
+    event AuthorizedOperator(address indexed operator, address indexed tokenHolder);
+    event RevokedOperator(address indexed operator, address indexed tokenHolder);
 }

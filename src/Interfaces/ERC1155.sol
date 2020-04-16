@@ -1,19 +1,13 @@
 pragma solidity ^0.6.0;
 
+
 /**
     @title ERC-1155 Multi Token Standard
     @dev See https://eips.ethereum.org/EIPS/eip-1155
     Note: The ERC-165 identifier for this interface is 0xd9b67a26.
  */
 interface ERC1155 {
-
-    event TransferSingle(
-        address indexed operator,
-        address indexed from,
-        address indexed to,
-        uint256 id,
-        uint256 value
-    );
+    event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value);
 
     event TransferBatch(
         address indexed operator,
@@ -23,11 +17,7 @@ interface ERC1155 {
         uint256[] values
     );
 
-    event ApprovalForAll(
-        address indexed owner,
-        address indexed operator,
-        bool approved
-    );
+    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
     event URI(string value, uint256 indexed id);
 
@@ -83,10 +73,7 @@ interface ERC1155 {
         @param id     ID of the token
         @return        The _owner's balance of the token type requested
      */
-    function balanceOf(address owner, uint256 id)
-        external
-        view
-        returns (uint256);
+    function balanceOf(address owner, uint256 id) external view returns (uint256);
 
     /**
         @notice Get the balance of multiple account/token pairs
@@ -94,10 +81,7 @@ interface ERC1155 {
         @param ids    ID of the tokens
         @return        The _owner's balance of the token types requested (i.e. balance for each (owner, id) pair)
      */
-    function balanceOfBatch(address[] calldata owners, uint256[] calldata ids)
-        external
-        view
-        returns (uint256[] memory);
+    function balanceOfBatch(address[] calldata owners, uint256[] calldata ids) external view returns (uint256[] memory);
 
     /**
         @notice Enable or disable approval for a third party ("operator") to manage all of the caller's tokens.
@@ -113,8 +97,5 @@ interface ERC1155 {
         @param operator  Address of authorized operator
         @return           True if the operator is approved, false if not
     */
-    function isApprovedForAll(address owner, address operator)
-        external
-        view
-        returns (bool);
+    function isApprovedForAll(address owner, address operator) external view returns (bool);
 }

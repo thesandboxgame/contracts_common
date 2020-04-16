@@ -3,11 +3,11 @@ pragma solidity ^0.6.0;
 import "./AdminUpgradeabilityProxy.sol";
 import "../BaseWithStorage/Ownable.sol";
 
+
 contract ProxyAdmin is Ownable {
     AdminUpgradeabilityProxy proxy;
-    constructor(AdminUpgradeabilityProxy _proxy, address payable _owner)
-        public
-    {
+
+    constructor(AdminUpgradeabilityProxy _proxy, address payable _owner) public {
         proxy = _proxy;
         owner = _owner;
     }
@@ -28,12 +28,7 @@ contract ProxyAdmin is Ownable {
         proxy.upgradeTo(implementation);
     }
 
-    function upgradeToAndCall(address implementation, bytes memory data)
-        public
-        payable
-        onlyOwner
-    {
+    function upgradeToAndCall(address implementation, bytes memory data) public payable onlyOwner {
         proxy.upgradeToAndCall.value(msg.value)(implementation, data);
     }
-
 }

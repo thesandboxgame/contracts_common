@@ -1,7 +1,7 @@
 pragma solidity ^0.6.0;
 
-contract Admin {
 
+contract Admin {
     address internal _admin;
 
     event AdminChanged(address oldAdmin, address newAdmin);
@@ -21,8 +21,7 @@ contract Admin {
     }
 
     modifier onlyAdmin() {
-        require (msg.sender == _admin, "only admin allowed");
+        require(msg.sender == _admin, "only admin allowed");
         _;
     }
-
 }

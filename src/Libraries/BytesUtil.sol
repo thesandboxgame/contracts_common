@@ -1,7 +1,12 @@
 pragma solidity ^0.6.0;
 
+
 library BytesUtil {
-    function memcpy(uint256 dest, uint256 src, uint256 len) internal pure {
+    function memcpy(
+        uint256 dest,
+        uint256 src,
+        uint256 len
+    ) internal pure {
         // Copy word-length chunks while possible
         for (; len >= 32; len -= 32) {
             assembly {
@@ -20,11 +25,7 @@ library BytesUtil {
         }
     }
 
-    function pointerToBytes(uint256 src, uint256 len)
-        internal
-        pure
-        returns (bytes memory)
-    {
+    function pointerToBytes(uint256 src, uint256 len) internal pure returns (bytes memory) {
         bytes memory ret = new bytes(len);
         uint256 retptr;
         assembly {
@@ -38,10 +39,7 @@ library BytesUtil {
     function addressToBytes(address a) internal pure returns (bytes memory b) {
         assembly {
             let m := mload(0x40)
-            mstore(
-                add(m, 20),
-                xor(0x140000000000000000000000000000000000000000, a)
-            )
+            mstore(add(m, 20), xor(0x140000000000000000000000000000000000000000, a))
             mstore(0x40, add(m, 52))
             b := m
         }
@@ -56,11 +54,7 @@ library BytesUtil {
         }
     }
 
-    function doFirstParamEqualsAddress(bytes memory data, address _address)
-        internal
-        pure
-        returns (bool)
-    {
+    function doFirstParamEqualsAddress(bytes memory data, address _address) internal pure returns (bool) {
         if (data.length < (36 + 32)) {
             return false;
         }
@@ -71,11 +65,11 @@ library BytesUtil {
         return value == uint256(_address);
     }
 
-    function doParamEqualsUInt256(bytes memory data, uint256 i, uint256 value)
-        internal
-        pure
-        returns (bool)
-    {
+    function doParamEqualsUInt256(
+        bytes memory data,
+        uint256 i,
+        uint256 value
+    ) internal pure returns (bool) {
         if (data.length < (36 + (i + 1) * 32)) {
             return false;
         }
@@ -87,10 +81,7 @@ library BytesUtil {
         return valuePresent == value;
     }
 
-    function overrideFirst32BytesWithAddress(
-        bytes memory data,
-        address _address
-    ) internal pure returns (bytes memory) {
+    function overrideFirst32BytesWithAddress(bytes memory data, address _address) internal pure returns (bytes memory) {
         uint256 dest;
         assembly {
             dest := add(data, 48)

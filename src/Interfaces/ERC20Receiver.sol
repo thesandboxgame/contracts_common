@@ -1,5 +1,6 @@
 pragma solidity ^0.6.0;
 
+
 interface ERC20Receiver {
     function receiveApproval(
         address _from,

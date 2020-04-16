@@ -3,6 +3,7 @@ pragma solidity ^0.6.0;
 import "./Ownable.sol";
 import "../Interfaces/ERC20.sol";
 
+
 contract Withdrawable is Ownable {
     function withdrawEther(address payable _destination) external onlyOwner {
         _destination.transfer(address(this).balance);

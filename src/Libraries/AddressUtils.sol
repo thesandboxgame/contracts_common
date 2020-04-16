@@ -1,7 +1,7 @@
 pragma solidity ^0.6.0;
 
-library AddressUtils {
 
+library AddressUtils {
     function toPayable(address _address) internal pure returns (address payable _payable) {
         return address(uint160(_address));
     }
