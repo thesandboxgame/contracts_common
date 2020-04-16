@@ -19,20 +19,14 @@ contract ReferrableSale is Ownable {
 
     function setDefaultReferral(uint256 _defaultReferralPercentage) public onlyOwner {
         require(_defaultReferralPercentage < 10000, "Referral must be less than 100 percent");
-        require(
-            _defaultReferralPercentage != defaultReferralPercentage,
-            "New referral must be different from the previous"
-        );
+        require(_defaultReferralPercentage != defaultReferralPercentage, "New referral must be different from the previous");
         defaultReferralPercentage = _defaultReferralPercentage;
         emit DefaultReferralSet(_defaultReferralPercentage);
     }
 
     function setCustomReferral(address _referrer, uint256 _customReferralPercentage) public onlyOwner {
         require(_customReferralPercentage < 10000, "Referral must be less than 100 percent");
-        require(
-            _customReferralPercentage != customReferralPercentages[_referrer],
-            "New referral must be different from the previous"
-        );
+        require(_customReferralPercentage != customReferralPercentages[_referrer], "New referral must be different from the previous");
         customReferralPercentages[_referrer] = _customReferralPercentage;
         emit CustomReferralSet(_referrer, _customReferralPercentage);
     }

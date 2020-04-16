@@ -9,13 +9,7 @@ pragma solidity ^0.6.0;
 interface ERC1155 {
     event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value);
 
-    event TransferBatch(
-        address indexed operator,
-        address indexed from,
-        address indexed to,
-        uint256[] ids,
-        uint256[] values
-    );
+    event TransferBatch(address indexed operator, address indexed from, address indexed to, uint256[] ids, uint256[] values);
 
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
