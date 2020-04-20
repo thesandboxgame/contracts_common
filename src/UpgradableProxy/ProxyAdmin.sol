@@ -29,6 +29,7 @@ contract ProxyAdmin is Ownable {
     }
 
     function upgradeToAndCall(address implementation, bytes memory data) public payable onlyOwner {
+        // prettier-ignore
         proxy.upgradeToAndCall{value:msg.value}(implementation, data);
     }
 }
