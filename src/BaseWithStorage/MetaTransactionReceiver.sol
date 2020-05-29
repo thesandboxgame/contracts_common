@@ -5,9 +5,13 @@ import "./Admin.sol";
 
 contract MetaTransactionReceiver is Admin {
     mapping(address => bool) internal _metaTransactionContracts;
+
+    /// @dev emiited when a meta transaction processor is enabled/disabled
+    /// @param metaTransactionProcessor address that will be given/removed metaTransactionProcessor rights.
+    /// @param enabled set whether the metaTransactionProcessor is enabled or disabled.
     event MetaTransactionProcessor(address metaTransactionProcessor, bool enabled);
 
-    /// @notice Enable or disable the ability of `metaTransactionProcessor` to perform meta-tx (metaTransactionProcessor rights).
+    /// @dev Enable or disable the ability of `metaTransactionProcessor` to perform meta-tx (metaTransactionProcessor rights).
     /// @param metaTransactionProcessor address that will be given/removed metaTransactionProcessor rights.
     /// @param enabled set whether the metaTransactionProcessor is enabled or disabled.
     function setMetaTransactionProcessor(address metaTransactionProcessor, bool enabled) public {
@@ -20,7 +24,7 @@ contract MetaTransactionReceiver is Admin {
         emit MetaTransactionProcessor(metaTransactionProcessor, enabled);
     }
 
-    /// @notice check whether address `who` is given meta-transaction execution rights.
+    /// @dev check whether address `who` is given meta-transaction execution rights.
     /// @param who The address to query.
     /// @return whether the address has meta-transaction execution rights.
     function isMetaTransactionProcessor(address who) external view returns (bool) {

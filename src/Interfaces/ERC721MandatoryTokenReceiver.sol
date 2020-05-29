@@ -1,9 +1,7 @@
 pragma solidity ^0.6.0;
 
 
-/**
-    Note: The ERC-165 identifier for this interface is 0x5e8bf644.
-*/
+/// @dev Note: The ERC-165 identifier for this interface is 0x5e8bf644.
 interface ERC721MandatoryTokenReceiver {
     function onERC721BatchReceived(
         address operator,
